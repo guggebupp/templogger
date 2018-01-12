@@ -15,12 +15,12 @@ public class TemperatureRestClient {
 	private static final String timeoutDefault = "1000";
 	
 	
-	public void sendTempData(Long sensorId, TempData tempData) {        
+	public void sendTempData(Long sensorId, TempData tempData) {
+		String hostUrl = System.getProperty("rest.templogger.endpoint", "http://172.17.0.2:8080");
+        String methodPath = System.getProperty("rest.templogger.methodpath", "OpenShiftTest/rest/temp/saveTempData");
         try {                            
             RestTemplate restTemplate = new RestTemplate(getClientHttpRequestFactory());            
-
-            String hostUrl = System.getProperty("rest.templogger.endpoint", "http://172.17.0.2:8080");
-            String methodPath = System.getProperty("rest.templogger.methodpath", "OpenShiftTest/rest/temp/saveTempData");
+            
             restTemplate.postForObject(hostUrl + "/" + methodPath + "/" + sensorId, tempData, Object.class);
 
         } catch (RestClientException e) {
