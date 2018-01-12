@@ -1,6 +1,6 @@
 package se.goran.raspberry.templogger.client;
 
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
@@ -15,11 +15,8 @@ public class TemperatureRestClient {
 	private static final String timeoutDefault = "1000";
 	
 	
-	public void sendTempData(Long sensorId, TempData tempData) {
-        
-        try {        
-            
-        
+	public void sendTempData(Long sensorId, TempData tempData) {        
+        try {                            
             RestTemplate restTemplate = new RestTemplate(getClientHttpRequestFactory());            
 
             String hostUrl = System.getProperty("rest.templogger.endpoint");
