@@ -24,7 +24,7 @@ public class TemperatureRestClient {
             restTemplate.postForObject(hostUrl + "/" + methodPath + "/" + sensorId, tempData, Object.class);
 
         } catch (RestClientException e) {
-            LOGGER.error("Failed to connect to RAM For Item : " + tempData.getTemperature() + " Error : " + e.getMessage());
+            LOGGER.error("Failed to connect to RAM For " + hostUrl + "/" + methodPath + "/" + sensorId + " Error : " + e.getMessage());
          
         }        
     }
