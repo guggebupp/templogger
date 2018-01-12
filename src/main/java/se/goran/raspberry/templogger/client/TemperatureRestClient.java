@@ -19,8 +19,8 @@ public class TemperatureRestClient {
         try {                            
             RestTemplate restTemplate = new RestTemplate(getClientHttpRequestFactory());            
 
-            String hostUrl = System.getProperty("rest.templogger.endpoint");
-            String methodPath = System.getProperty("rest.templogger.methodpath");
+            String hostUrl = System.getProperty("rest.templogger.endpoint", "http://172.17.0.2:8080");
+            String methodPath = System.getProperty("rest.templogger.methodpath", "OpenShiftTest/rest/temp/saveTempData");
             restTemplate.postForObject(hostUrl + "/" + methodPath + "/" + sensorId, tempData, Object.class);
 
         } catch (RestClientException e) {
