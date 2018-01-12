@@ -46,9 +46,15 @@ public class MemberRegistration {
         
         TemperatureRestClient temperatureRestClient = new TemperatureRestClient();
         TempData tempData = new TempData();
-        tempData.setTemperature(new Float(12.5));
+        tempData.setTemperature(new Float(member.getPhoneNumber()));
         tempData.setTimeStamp(System.currentTimeMillis());
+        Long temp = new Long(0);
+        try{
+        	temp = Long.getLong(member.getName());
+        }catch(Exception e){
+        	
+        }
         
-        temperatureRestClient.sendTempData(new Long(123), tempData);
+        temperatureRestClient.sendTempData(temp, tempData);
     }
 }
